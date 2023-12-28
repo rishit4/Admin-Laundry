@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "297273493183",
+    "project_id": "admin-ef60c",
+    "storage_bucket": "admin-ef60c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297273493183:android:2dd4bf3dba615bc777280a",
+        "android_client_info": {
+          "package_name": "com.example.panel_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2-u0EYMWSC2V5kJX-_eOekK_Xpbs2we0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
