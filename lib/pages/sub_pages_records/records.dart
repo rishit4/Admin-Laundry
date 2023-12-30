@@ -172,21 +172,12 @@ class _RecordsPageState extends State<RecordsPage> {
     String otherItems,
   ) async {
     if (selectedProducts.isNotEmpty) {
-      showDialog(
-          context: context,
-          barrierDismissible: false, // Prevent user from dismissing the dialog
-          builder: (context) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          });
       await FirebaseFirestore.instance.collection('records').add({
         'userName': selectedUsers,
         'otherItems': otherItems,
         'selectedValues': selectedProducts,
         'timestamp': FieldValue.serverTimestamp(),
       });
-      Navigator.pop(context);
       showSnackbar(context, Colors.blue.shade300, 'Data saved to Record');
       Get.to(() => const RecordScreen());
     } else {

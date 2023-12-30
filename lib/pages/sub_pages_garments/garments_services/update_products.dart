@@ -13,7 +13,6 @@ import '../../../common_widgets/responsive_text.dart';
 
 class UpdateProductsPage extends StatefulWidget {
   static const String id = 'UpdateProductsPage';
-
   const UpdateProductsPage({super.key});
 
   @override
@@ -84,7 +83,7 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
                             : const Text('Please Select Image'),
                         // child: ,
                       ),
-                      ElevatedButton(
+                      TextButton(
                         onPressed: () {
                           _imagePick();
                         },
@@ -95,18 +94,17 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ElevatedButton(
-                          onPressed: () async {
-                            await addProduct();
-                            setState(() {
-                              productController.clear();
-                              quantityController.clear();
-                              _selectImage = null;
-                              imageUrl = '';
-                            });
+                      TextButton(
+                          onPressed: () {
+                            clearProductDetails();
+                          },
+                          child: const Text('Clear')),
+                      TextButton(
+                          onPressed: () {
+                            addProduct();
                           },
                           child: const Text('Add Product')),
-                      ElevatedButton(
+                      TextButton(
                           onPressed: () {
                             Get.to(() => const MensWear());
                           },
@@ -130,6 +128,16 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
     setState(() {
       _selectImage = File(returnedImage.path);
       imageUrl = ''; // Clear the imageUrl before setting the new URL
+    });
+  }
+
+////function for clear details
+  void clearProductDetails() {
+    setState(() {
+      productController.clear();
+      quantityController.clear();
+      _selectImage = null;
+      imageUrl = '';
     });
   }
 
@@ -179,7 +187,6 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
         'quantity': quantity,
         'image': imageUrl,
       }).then((value) => {
-            Navigator.pop(context),
             showSnackbar(context, Colors.blue.shade300,
                 'Products are successfully Added'),
             Get.to(() => const MensWear()),

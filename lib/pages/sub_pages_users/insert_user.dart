@@ -34,13 +34,11 @@ class _InsertUserState extends State<InsertUser> {
     var mediaQuery = MediaQuery.of(context);
 
     void clearText() {
-      setState(() {
-        userNameController.clear();
-        userEmailController.clear();
-        userPasswordController.clear();
-        userPhoneController.clear();
-        userAddressController.clear();
-      });
+      userNameController.clear();
+      userEmailController.clear();
+      userPasswordController.clear();
+      userPhoneController.clear();
+      userAddressController.clear();
     }
 
     return Form(
@@ -161,16 +159,21 @@ class _InsertUserState extends State<InsertUser> {
             SizedBox(height: mediaQuery.size.height * 0.03),
             Padding(
               padding: EdgeInsets.only(right: 15.sp, left: 15.sp, top: 4.sp),
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                      onPressed: () async {
-                        await addUsers();
+                  //MyButton(text: 'Clear', onTap: clearText()),
+                  TextButton(
+                      onPressed: () {
                         clearText();
                       },
+                      child: const Text('Clear')),
+                  TextButton(
+                      onPressed: () {
+                        addUsers();
+                      },
                       child: const Text('Add User')),
-                  ElevatedButton(
+                  TextButton(
                       onPressed: () {
                         Get.to(() => const UpdateUser());
                       },
@@ -187,14 +190,6 @@ class _InsertUserState extends State<InsertUser> {
 //// function for add users
   addUsers() async {
     if (_formKey.currentState!.validate()) {
-      showDialog(
-          context: context,
-          barrierDismissible: false, // Prevent user from dismissing the dialog
-          builder: (context) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          });
       var userName = userNameController.text.trim();
       var userEmail = userEmailController.text.trim();
       var userPassword = userPasswordController.text.trim();
@@ -205,7 +200,6 @@ class _InsertUserState extends State<InsertUser> {
           .createUserWithEmailAndPassword(
               email: userEmail, password: userPassword)
           .then((value) => {
-                Navigator.pop(context),
                 showSnackbar(
                     context, Colors.green.shade200, 'User successfully Added'),
                 signUpUser(
