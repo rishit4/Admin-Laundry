@@ -83,7 +83,7 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
                             : const Text('Please Select Image'),
                         // child: ,
                       ),
-                      TextButton(
+                      ElevatedButton(
                         onPressed: () {
                           _imagePick();
                         },
@@ -94,17 +94,13 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextButton(
-                          onPressed: () {
+                      ElevatedButton(
+                          onPressed: () async {
+                            await addProduct();
                             clearProductDetails();
                           },
-                          child: const Text('Clear')),
-                      TextButton(
-                          onPressed: () {
-                            addProduct();
-                          },
                           child: const Text('Add Product')),
-                      TextButton(
+                      ElevatedButton(
                           onPressed: () {
                             Get.to(() => const MensWear());
                           },
@@ -187,6 +183,7 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
         'quantity': quantity,
         'image': imageUrl,
       }).then((value) => {
+            Navigator.pop(context),
             showSnackbar(context, Colors.blue.shade300,
                 'Products are successfully Added'),
             Get.to(() => const MensWear()),

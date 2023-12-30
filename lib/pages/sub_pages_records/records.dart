@@ -144,11 +144,7 @@ class _RecordsPageState extends State<RecordsPage> {
                       selectedProducts,
                       otherItemsController.text,
                     );
-                    setState(() {
-                      selectedUsers.clear();
-                      selectedProducts.clear();
-                      otherItemsController.clear();
-                    });
+                    clearRecordsDetails();
                   },
                   child: const Text('Save to Record Page'),
                 ),
@@ -166,18 +162,35 @@ class _RecordsPageState extends State<RecordsPage> {
     );
   }
 
+  void clearRecordsDetails() {
+    setState(() {
+      selectedUsers.clear();
+      selectedProducts.clear();
+      otherItemsController.clear();
+    });
+  }
+
   void saveToRecordPage(
     List<String> selectedUsers,
     List<String> selectedProducts,
     String otherItems,
   ) async {
     if (selectedProducts.isNotEmpty) {
+      showDialog(
+          context: context,
+          barrierDismissible: false, // Prevent user from dismissing the dialog
+          builder: (context) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          });
       await FirebaseFirestore.instance.collection('records').add({
         'userName': selectedUsers,
         'otherItems': otherItems,
         'selectedValues': selectedProducts,
         'timestamp': FieldValue.serverTimestamp(),
       });
+      Navigator.pop(context);
       showSnackbar(context, Colors.blue.shade300, 'Data saved to Record');
       Get.to(() => const RecordScreen());
     } else {
