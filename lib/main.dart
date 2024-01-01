@@ -2,15 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panel_admin/firebase_options.dart';
-import 'package:panel_admin/pages/admin_pages/garments_list_page.dart';
-import 'package:panel_admin/pages/admin_pages/user_list_page.dart';
+import 'package:panel_admin/pages/admin_pages/intro_page.dart';
 import 'package:sizer/sizer.dart';
 import 'auth_screens/login_screen.dart';
 import 'auth_services/helper_functions.dart';
 import 'boarding_screens/home_page.dart';
-import 'pages/sub_pages_garments/garments_services/update_products.dart';
-import 'pages/sub_pages_records/records.dart';
-import 'pages/sub_pages_users/users_services/user_update.dart';
+import 'pages/admin_pages/products.dart';
+import 'pages/admin_pages/records.dart';
+import 'pages/users_services/user_update.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,10 +59,9 @@ class _MyAppState extends State<MyApp> {
           routes: {
             HomeScreen.id: (context) => const HomeScreen(),
             UserListPage.id: (context) => const UserListPage(),
-            GarmentsListPage.id: (context) => const GarmentsListPage(),
             UserUpdateScreen.id: (context) => const UserUpdateScreen(),
             RecordsPage.id: (context) => const RecordsPage(),
-            UpdateProductsPage.id: (context) => const UpdateProductsPage(),
+            Products.id: (context) => const Products(),
           },
         );
       });

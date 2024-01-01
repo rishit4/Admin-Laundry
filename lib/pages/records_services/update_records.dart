@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panel_admin/pages/sub_pages_records/combin_data.dart';
+import 'package:panel_admin/pages/records_services/combin_data.dart';
 import 'package:sizer/sizer.dart';
 import '../../common_widgets/my_snack_bar.dart';
 

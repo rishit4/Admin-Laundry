@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:panel_admin/pages/sub_pages_records/update_records.dart';
+import 'package:panel_admin/pages/records_services/update_records.dart';
 import 'package:sizer/sizer.dart';
 import '../../common_widgets/my_snack_bar.dart';
 import '../../common_widgets/my_text_field.dart';

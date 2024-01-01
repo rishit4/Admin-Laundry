@@ -7,19 +7,19 @@ import 'package:sizer/sizer.dart';
 import '../../common_widgets/my_snack_bar.dart';
 import '../../common_widgets/my_text_field.dart';
 import '../../common_widgets/responsive_text.dart';
-import 'update_user.dart';
-import 'users_services/signup_services.dart';
+import '../users_services/signup_services.dart';
+import '../users_services/users_list.dart';
 
-class InsertUser extends StatefulWidget {
+class Users extends StatefulWidget {
   static const String id = 'Insert_User';
 
-  const InsertUser({Key? key}) : super(key: key);
+  const Users({Key? key}) : super(key: key);
 
   @override
-  State<InsertUser> createState() => _InsertUserState();
+  State<Users> createState() => _InsertUserState();
 }
 
-class _InsertUserState extends State<InsertUser> {
+class _InsertUserState extends State<Users> {
   final _formKey = GlobalKey<FormState>();
   User? currentUser = FirebaseAuth.instance.currentUser;
 

@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../common_widgets/my_snack_bar.dart';
+import '../../../common_widgets/my_snack_bar.dart';
 
-class MensWear extends StatelessWidget {
+class ProductsList extends StatelessWidget {
   static const String id = "Mens_wear";
 
-  const MensWear({super.key});
+  const ProductsList({super.key});
 
   @override
   Widget build(BuildContext context) {

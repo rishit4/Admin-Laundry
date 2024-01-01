@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import '../../common_widgets/my_snack_bar.dart';
-import 'users_services/user_update.dart';
+import '../../../common_widgets/my_snack_bar.dart';
+import 'user_update.dart';
 
 class UpdateUser extends StatelessWidget {
   static const String id = 'Update_User';

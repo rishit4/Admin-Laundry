@@ -4,15 +4,10 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import '../auth_screens/login_screen.dart';
 import '../auth_services/helper_functions.dart';
 import '../common_widgets/my_routes.dart';
-import '../pages/admin_pages/garments_list_page.dart';
-import '../pages/sub_pages_garments/garments_services/update_products.dart';
-import '../pages/sub_pages_records/records.dart';
-import '../pages/sub_pages_garments/kids_wear.dart';
-import '../pages/sub_pages_garments/mens_wear.dart';
-import '../pages/sub_pages_garments/others.dart';
-import '../pages/sub_pages_garments/womens_wear.dart';
-import '../pages/admin_pages/user_list_page.dart';
-import '../pages/sub_pages_users/insert_user.dart';
+import '../pages/admin_pages/products.dart';
+import '../pages/admin_pages/records.dart';
+import '../pages/admin_pages/intro_page.dart';
+import '../pages/admin_pages/users.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = "home_screen";
@@ -28,44 +23,19 @@ class _HomePageState extends State<HomeScreen> {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   currentScreen(item) {
     switch (item.route) {
+      case Users.id:
+        setState(() {
+          _selectedScreen = const Users();
+        });
+        break;
       case UserListPage.id:
         setState(() {
           _selectedScreen = const UserListPage();
         });
         break;
-      case GarmentsListPage.id:
+      case Products.id:
         setState(() {
-          _selectedScreen = const GarmentsListPage();
-        });
-        break;
-      case InsertUser.id:
-        setState(() {
-          _selectedScreen = const InsertUser();
-        });
-        break;
-      case MensWear.id:
-        setState(() {
-          _selectedScreen = const MensWear();
-        });
-        break;
-      case WomensWear.id:
-        setState(() {
-          _selectedScreen = const WomensWear();
-        });
-        break;
-      case KidsWear.id:
-        setState(() {
-          _selectedScreen = const KidsWear();
-        });
-        break;
-      case OthersWear.id:
-        setState(() {
-          _selectedScreen = const OthersWear();
-        });
-        break;
-      case UpdateProductsPage.id:
-        setState(() {
-          _selectedScreen = const UpdateProductsPage();
+          _selectedScreen = const Products();
         });
         break;
       case RecordsPage.id:
@@ -102,52 +72,16 @@ class _HomePageState extends State<HomeScreen> {
       ),
       sideBar: SideBar(
         items: const [
-          //// first lists for Config users
           AdminMenuItem(
-              title: 'User Lists',
-              icon: Icons.list_alt,
-              //route: UserListPage.id,
-              children: [
-                AdminMenuItem(
-                  title: 'Insert User',
-                  icon: Icons.person_add_outlined,
-                  route: InsertUser.id,
-                ),
-              ]),
-          //// second lists for Garments OR Products
-          AdminMenuItem(
-              title: 'Garments Lists',
-              icon: Icons.style,
-              //route: GarmentsListPage.id,
-              children: [
-                AdminMenuItem(
-                  title: 'Mens wear',
-                  icon: Icons.male,
-                  route: MensWear.id,
-                ),
-                AdminMenuItem(
-                  title: 'Womens wear',
-                  icon: Icons.female,
-                  route: WomensWear.id,
-                ),
-                AdminMenuItem(
-                  title: 'Kids wear',
-                  icon: Icons.child_care,
-                  route: KidsWear.id,
-                ),
-                AdminMenuItem(
-                  title: 'Others',
-                  icon: Icons.swap_horiz,
-                  route: OthersWear.id,
-                ),
-              ]),
-          //// third lists for adding products
+            title: 'Insert User',
+            icon: Icons.person_add_outlined,
+            route: Users.id,
+          ),
           AdminMenuItem(
             title: 'ProductsPage',
             icon: Icons.shopping_cart,
-            route: UpdateProductsPage.id,
+            route: Products.id,
           ),
-          //// fourth lists for order of users
           AdminMenuItem(
             title: 'Records',
             icon: Icons.receipt_long_outlined,

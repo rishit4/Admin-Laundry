@@ -6,20 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:panel_admin/common_widgets/my_snack_bar.dart';
-import 'package:panel_admin/pages/sub_pages_garments/mens_wear.dart';
 import 'package:sizer/sizer.dart';
-import '../../../common_widgets/my_text_field.dart';
-import '../../../common_widgets/responsive_text.dart';
+import '../../common_widgets/my_text_field.dart';
+import '../../common_widgets/responsive_text.dart';
+import '../products_services/products_list.dart';
 
-class UpdateProductsPage extends StatefulWidget {
+class Products extends StatefulWidget {
   static const String id = 'UpdateProductsPage';
-  const UpdateProductsPage({super.key});
+  const Products({super.key});
 
   @override
-  State<UpdateProductsPage> createState() => _UpdateProductsPageState();
+  State<Products> createState() => _UpdateProductsPageState();
 }
 
-class _UpdateProductsPageState extends State<UpdateProductsPage> {
+class _UpdateProductsPageState extends State<Products> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController productController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
@@ -102,7 +102,7 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
                           child: const Text('Add Product')),
                       ElevatedButton(
                           onPressed: () {
-                            Get.to(() => const MensWear());
+                            Get.to(() => const ProductsList());
                           },
                           child: const Text('Products List'))
                     ],
@@ -186,7 +186,7 @@ class _UpdateProductsPageState extends State<UpdateProductsPage> {
             Navigator.pop(context),
             showSnackbar(context, Colors.blue.shade300,
                 'Products are successfully Added'),
-            Get.to(() => const MensWear()),
+            Get.to(() => const ProductsList()),
           });
     } catch (e) {
       showSnackbar(context, Colors.red.shade300, 'Something went Wrong, $e');
