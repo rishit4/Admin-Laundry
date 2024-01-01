@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,6 @@ import 'package:sizer/sizer.dart';
 import '../../common_widgets/my_snack_bar.dart';
 import '../../common_widgets/my_text_field.dart';
 import '../../common_widgets/responsive_text.dart';
-import '../users_services/signup_services.dart';
 import '../users_services/users_list.dart';
 
 class Users extends StatefulWidget {
@@ -121,7 +121,7 @@ class _InsertUserState extends State<Users> {
               controller: userPhoneController,
               keyboardType: TextInputType.number,
               decoration: textInputDecoration.copyWith(
-                label: const ResponsiveText(text: 'Contact No.', size: 4.5),
+                label: const ResponsiveText(text: 'Contact No', size: 4.5),
               ),
               validator: (val) {
                 if (val!.length < 10) {
@@ -172,7 +172,7 @@ class _InsertUserState extends State<Users> {
                       child: const Text('Add User')),
                   ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const UpdateUser());
+                        Get.to(() => const UsersList());
                       },
                       child: const Text('Users List'))
                 ],
@@ -201,21 +201,40 @@ class _InsertUserState extends State<Users> {
       var userPhone = userPhoneController.text.trim();
       var userAddress = userAddressController.text.trim();
 
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: userEmail, password: userPassword)
-          .then((value) => {
+      // await FirebaseAuth.instance
+      //     .createUserWithEmailAndPassword(
+      //         email: userEmail, password: userPassword)
+      //     .then((value) => {
+      //           Navigator.pop(context),
+      //           showSnackbar(
+      //               context, Colors.green.shade200, 'User successfully Added'),
+      //           signUpUser(
+      //             userName,
+      //             userEmail,
+      //             userPassword,
+      //             userPhone,
+      //             userAddress,
+      //           ),
+      //           Get.to(() => const UpdateUser())
+      //         });
+
+      User? userUId = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userUId!.uid)
+          .set({
+        'User Name': userName,
+        'User E-mail': userEmail,
+        'User Password': userPassword,
+        'User Contact-No': userPhone,
+        'User Address': userAddress,
+        'User UId': userUId.uid,
+        'Created At': DateTime.now(),
+      }).then((value) => {
                 Navigator.pop(context),
                 showSnackbar(
-                    context, Colors.green.shade200, 'User successfully Added'),
-                signUpUser(
-                  userName,
-                  userEmail,
-                  userPassword,
-                  userPhone,
-                  userAddress,
-                ),
-                Get.to(() => const UpdateUser())
+                    context, Colors.blue.shade300, 'User successfully Added'),
+                Get.to(() => const UsersList()),
               });
     } else {
       showSnackbar(context, Colors.red.shade300, 'Something went Wrong');

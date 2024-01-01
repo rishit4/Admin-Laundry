@@ -6,10 +6,10 @@ import 'package:sizer/sizer.dart';
 import '../../../common_widgets/my_snack_bar.dart';
 import 'user_update.dart';
 
-class UpdateUser extends StatelessWidget {
+class UsersList extends StatelessWidget {
   static const String id = 'Update_User';
 
-  const UpdateUser({super.key});
+  const UsersList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,15 @@ class UpdateUser extends StatelessWidget {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   final docId = snapshot.data!.docs[index].id;
-                  final userName = snapshot.data!.docs[index]['userName'];
-                  final userEmail = snapshot.data!.docs[index]['userEmail'];
-                  final userPhone = snapshot.data!.docs[index]['userPhone'];
-                  final userAddress = snapshot.data!.docs[index]['userAddress'];
+                  final userName =
+                      snapshot.data!.docs[index]['User Name'].toString();
+                  final userEmail = snapshot.data!.docs[index]['User E-mail'];
+                  final userPassword =
+                      snapshot.data!.docs[index]['User Password'];
+                  final userPhone =
+                      snapshot.data!.docs[index]['User Contact-No'];
+                  final userAddress =
+                      snapshot.data!.docs[index]['User Address'];
                   return Padding(
                     padding:
                         EdgeInsets.only(top: 10, right: 25.sp, left: 25.sp),
@@ -56,10 +61,11 @@ class UpdateUser extends StatelessWidget {
                                 Get.to(() => const UserUpdateScreen(),
                                     arguments: {
                                       'docId': docId,
-                                      'userName': userName,
-                                      'userEmail': userEmail,
-                                      'userPhone': userPhone,
-                                      'userAddress': userAddress,
+                                      'User Name': userName,
+                                      'User E-mail': userEmail,
+                                      'User Password': userPassword,
+                                      'User Contact-No': userPhone,
+                                      'User Address': userAddress,
                                     });
                               },
                               icon: const Icon(Icons.edit, color: Colors.blue),

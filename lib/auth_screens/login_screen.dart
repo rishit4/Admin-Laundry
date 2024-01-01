@@ -24,13 +24,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
+  bool _obscureText = true;
   final formKey = GlobalKey<FormState>();
   AuthService authService = AuthService();
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-  // String email = "";
-  // String password = "";
-  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 obscureText: _obscureText,
                                 //controller: controller.password,
                                 controller: passwordTextController,
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.text,
                                 decoration: textInputDecoration.copyWith(
                                     label: const ResponsiveText(
                                         text: "Password", size: 4.5),

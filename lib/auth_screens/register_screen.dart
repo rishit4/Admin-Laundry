@@ -1,5 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../auth_services/auth_services.dart';
 import '../auth_services/helper_functions.dart';
@@ -12,8 +14,6 @@ import '../common_widgets/responsive_text.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
-  //static const String id = "register-screen";
-
   const RegisterScreen({super.key});
 
   @override
@@ -29,10 +29,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordTextController = TextEditingController();
   TextEditingController fullNameTextController = TextEditingController();
   TextEditingController mobileNoTextController = TextEditingController();
-  // String email = "";
-  // String password = "";
-  // String fullName = "";
-  // String mobileNo = "";
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               TextFormField(
                                 obscureText: _obscureText,
                                 controller: passwordTextController,
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.text,
                                 decoration: textInputDecoration.copyWith(
                                     label: const ResponsiveText(
                                         text: "Password", size: 4.5),
@@ -226,8 +222,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmailSF(emailTextController.text);
           await HelperFunctions.saveUserNameSF(fullNameTextController.text);
-          // ignore: use_build_context_synchronously
-          nextScreenReplace(context, const HomeScreen());
+          Navigator.pop(context);
+          Get.to(() => const HomeScreen());
         } else {
           showSnackbar(context, Colors.red, value);
           _isLoading = false;

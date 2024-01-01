@@ -159,7 +159,7 @@ class _UpdateProductsPageState extends State<Products> {
             child: CircularProgressIndicator(),
           );
         });
-    CollectionReference reference =
+    CollectionReference productsReference =
         FirebaseFirestore.instance.collection('products');
 
     try {
@@ -178,10 +178,10 @@ class _UpdateProductsPageState extends State<Products> {
       print(quantity);
       print(imageUrl);
 
-      await reference.add({
-        'product': product,
-        'quantity': quantity,
-        'image': imageUrl,
+      await productsReference.add({
+        'Product': product,
+        'Quantity': quantity,
+        'Image': imageUrl,
       }).then((value) => {
             Navigator.pop(context),
             showSnackbar(context, Colors.blue.shade300,

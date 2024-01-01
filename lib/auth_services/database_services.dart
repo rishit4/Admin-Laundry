@@ -14,12 +14,11 @@ class DatabaseService {
   // Saving the UserData
   Future savingUserdata(String fullName, String email, String password) async {
     return await adminCollection.doc(uid).set({
-      "fullName": fullName,
-      "email": email,
-      "password": password,
-      //"userData": 'userData',
-      //"bio": 'Empty Bio...',
-      "uid": uid,
+      "Full Name": fullName,
+      "E-mail": email,
+      "Password": password,
+      "Unique id": uid,
+      'Created At': DateTime.now(),
     });
   }
 

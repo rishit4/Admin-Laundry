@@ -110,7 +110,7 @@ class _InsertUserState extends State<UserUpdateScreen> {
                                             context,
                                             Colors.green.shade200,
                                             'User successfully Updated'),
-                                        Get.to(() => const UpdateUser())
+                                        Get.to(() => const UsersList())
                                       });
                             } else {
                               showSnackbar(context, Colors.red.shade300,
