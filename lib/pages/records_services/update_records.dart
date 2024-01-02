@@ -1,7 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:panel_admin/pages/records_services/combin_data.dart';
+import 'package:panel_admin/pages/records_services/detailed_records.dart';
 import 'package:sizer/sizer.dart';
 import '../../common_widgets/my_snack_bar.dart';
 

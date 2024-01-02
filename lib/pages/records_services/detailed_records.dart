@@ -49,6 +49,7 @@ class DetailedRecords extends StatelessWidget {
     );
   }
 
+//// function for fetching data from both collections
   Future<List<Map<String, dynamic>>> fetchData() async {
     // Sample data from two collections
     QuerySnapshot collection1 =

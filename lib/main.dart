@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           routes: {
             HomeScreen.id: (context) => const HomeScreen(),
             UserListPage.id: (context) => const UserListPage(),
-            UserUpdateScreen.id: (context) => const UserUpdateScreen(),
+            UpdateUsers.id: (context) => const UpdateUsers(),
             RecordsPage.id: (context) => const RecordsPage(),
             Products.id: (context) => const Products(),
           },

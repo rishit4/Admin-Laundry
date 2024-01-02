@@ -55,14 +55,13 @@ class UsersList extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                Get.to(() => const UserUpdateScreen(),
-                                    arguments: {
-                                      'docId': docId,
-                                      'User Name': userName,
-                                      'User E-mail': userEmail,
-                                      'User Contact-No': userPhone,
-                                      'User Address': userAddress,
-                                    });
+                                Get.to(() => const UpdateUsers(), arguments: {
+                                  'docId': docId,
+                                  'User Name': userName,
+                                  'User E-mail': userEmail,
+                                  'User Contact-No': userPhone,
+                                  'User Address': userAddress,
+                                });
                               },
                               icon: const Icon(Icons.edit, color: Colors.blue),
                             ),
