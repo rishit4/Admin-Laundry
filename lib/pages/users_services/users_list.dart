@@ -35,11 +35,8 @@ class UsersList extends StatelessWidget {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   final docId = snapshot.data!.docs[index].id;
-                  final userName =
-                      snapshot.data!.docs[index]['User Name'].toString();
+                  final userName = snapshot.data!.docs[index]['User Name'];
                   final userEmail = snapshot.data!.docs[index]['User E-mail'];
-                  final userPassword =
-                      snapshot.data!.docs[index]['User Password'];
                   final userPhone =
                       snapshot.data!.docs[index]['User Contact-No'];
                   final userAddress =
@@ -63,7 +60,6 @@ class UsersList extends StatelessWidget {
                                       'docId': docId,
                                       'User Name': userName,
                                       'User E-mail': userEmail,
-                                      'User Password': userPassword,
                                       'User Contact-No': userPhone,
                                       'User Address': userAddress,
                                     });

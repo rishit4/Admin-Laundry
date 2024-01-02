@@ -37,8 +37,8 @@ class _RecordsPageState extends State<RecordsPage> {
         .map((QuerySnapshot snapshot) {
       return snapshot.docs.map((user) {
         return MultiSelectItem<String>(
-          user['userName'],
-          user['userName'],
+          user['User Name'],
+          user['User Name'],
         );
       }).toList();
     });
@@ -51,8 +51,8 @@ class _RecordsPageState extends State<RecordsPage> {
         .map((QuerySnapshot snapshot) {
       return snapshot.docs.map((product) {
         return MultiSelectItem<String>(
-          product['product'],
-          product['product'],
+          product['Product'],
+          product['Product'],
         );
       }).toList();
     });
@@ -185,7 +185,7 @@ class _RecordsPageState extends State<RecordsPage> {
             );
           });
       await FirebaseFirestore.instance.collection('records').add({
-        'userName': selectedUsers,
+        'User Name': selectedUsers,
         'otherItems': otherItems,
         'selectedValues': selectedProducts,
         'timestamp': FieldValue.serverTimestamp(),

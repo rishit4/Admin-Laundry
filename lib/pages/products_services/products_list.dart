@@ -32,10 +32,10 @@ class ProductsList extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     final docId = snapshot.data!.docs[index].id;
-                    final product = snapshot.data!.docs[index]['product'];
+                    final product = snapshot.data!.docs[index]['Product'];
                     final quantity =
-                        snapshot.data!.docs[index]['quantity'].toString();
-                    final image = snapshot.data!.docs[index]['image'];
+                        snapshot.data!.docs[index]['Quantity'].toString();
+                    final image = snapshot.data!.docs[index]['Image'];
                     return Padding(
                       padding:
                           EdgeInsets.only(top: 10, right: 25.sp, left: 25.sp),

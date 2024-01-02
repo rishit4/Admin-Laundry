@@ -34,8 +34,8 @@ class DetailedRecords extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text('Name:  ${data['userName'].toString()}'),
-                          Text('Contact No.:  ${data['userPhone']}'),
+                          Text('Name:  ${data['User Name'].toString()}'),
+                          Text('Contact No:  ${data['User Contact-No']}'),
                           Text('Products:  ${data['otherItems'].toString()}'),
                           Text('Order:  ${data['selectedValues'].toString()}'),
                         ]),

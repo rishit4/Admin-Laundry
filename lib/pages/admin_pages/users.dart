@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,6 @@ class _InsertUserState extends State<Users> {
 
   TextEditingController userNameController = TextEditingController();
   TextEditingController userEmailController = TextEditingController();
-  TextEditingController userPasswordController = TextEditingController();
   TextEditingController userPhoneController = TextEditingController();
   TextEditingController userAddressController = TextEditingController();
 
@@ -37,7 +35,6 @@ class _InsertUserState extends State<Users> {
       setState(() {
         userNameController.clear();
         userEmailController.clear();
-        userPasswordController.clear();
         userPhoneController.clear();
         userAddressController.clear();
       });
@@ -70,7 +67,6 @@ class _InsertUserState extends State<Users> {
               onChanged: (val) {
                 setState(() {
                   userNameController = val as TextEditingController;
-                  //fullName = val;
                 });
               },
             ),
@@ -91,28 +87,6 @@ class _InsertUserState extends State<Users> {
               onChanged: (val) {
                 setState(() {
                   userEmailController = val as TextEditingController;
-                  //fullName = val;
-                });
-              },
-            ),
-            SizedBox(height: mediaQuery.size.height * 0.03),
-            TextFormField(
-              controller: userPasswordController,
-              keyboardType: TextInputType.text,
-              decoration: textInputDecoration.copyWith(
-                label: const ResponsiveText(text: 'Password', size: 4.5),
-              ),
-              validator: (val) {
-                if (val!.length < 8) {
-                  return "Password must contain at least 8 characters";
-                } else {
-                  return null;
-                }
-              },
-              onChanged: (val) {
-                setState(() {
-                  userPasswordController = val as TextEditingController;
-                  //fullName = val;
                 });
               },
             ),
@@ -133,7 +107,6 @@ class _InsertUserState extends State<Users> {
               onChanged: (val) {
                 setState(() {
                   userPhoneController = val as TextEditingController;
-                  //fullName = val;
                 });
               },
             ),
@@ -154,7 +127,6 @@ class _InsertUserState extends State<Users> {
               onChanged: (val) {
                 setState(() {
                   userAddressController = val as TextEditingController;
-                  //fullName = val;
                 });
               },
             ),
@@ -197,45 +169,21 @@ class _InsertUserState extends State<Users> {
           });
       var userName = userNameController.text.trim();
       var userEmail = userEmailController.text.trim();
-      var userPassword = userPasswordController.text.trim();
       var userPhone = userPhoneController.text.trim();
       var userAddress = userAddressController.text.trim();
 
-      // await FirebaseAuth.instance
-      //     .createUserWithEmailAndPassword(
-      //         email: userEmail, password: userPassword)
-      //     .then((value) => {
-      //           Navigator.pop(context),
-      //           showSnackbar(
-      //               context, Colors.green.shade200, 'User successfully Added'),
-      //           signUpUser(
-      //             userName,
-      //             userEmail,
-      //             userPassword,
-      //             userPhone,
-      //             userAddress,
-      //           ),
-      //           Get.to(() => const UpdateUser())
-      //         });
-
-      User? userUId = FirebaseAuth.instance.currentUser;
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userUId!.uid)
-          .set({
+      await FirebaseFirestore.instance.collection('users').doc().set({
         'User Name': userName,
         'User E-mail': userEmail,
-        'User Password': userPassword,
         'User Contact-No': userPhone,
         'User Address': userAddress,
-        'User UId': userUId.uid,
         'Created At': DateTime.now(),
       }).then((value) => {
-                Navigator.pop(context),
-                showSnackbar(
-                    context, Colors.blue.shade300, 'User successfully Added'),
-                Get.to(() => const UsersList()),
-              });
+            Navigator.pop(context),
+            showSnackbar(
+                context, Colors.blue.shade300, 'User successfully Added'),
+            Get.to(() => const UsersList()),
+          });
     } else {
       showSnackbar(context, Colors.red.shade300, 'Something went Wrong');
     }

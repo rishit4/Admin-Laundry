@@ -38,9 +38,9 @@ class _RecordScreenState extends State<RecordScreen> {
                   itemBuilder: (context, index) {
                     final docId = snapshot.data!.docs[index].id;
                     final userName =
-                        snapshot.data!.docs[index]['userName'].toString();
+                        snapshot.data!.docs[index]['User Name'].toString();
                     final userEmail =
-                        snapshot.data!.docs[index]['userEmail'].toString();
+                        snapshot.data!.docs[index]['User E-mail'].toString();
                     return Padding(
                       padding:
                           EdgeInsets.only(top: 10, right: 25.sp, left: 25.sp),

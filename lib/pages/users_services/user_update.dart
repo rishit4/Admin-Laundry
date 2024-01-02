@@ -47,21 +47,21 @@ class _InsertUserState extends State<UserUpdateScreen> {
                   SizedBox(height: mediaQuery.size.height * 0.1),
                   TextFormField(
                     controller: upNameController
-                      ..text = Get.arguments['userName'].toString(),
+                      ..text = Get.arguments['User Name'].toString(),
                     decoration:
                         textInputDecoration.copyWith(hintText: 'User Name'),
                   ),
                   SizedBox(height: mediaQuery.size.height * 0.03),
                   TextFormField(
                     controller: upEmailController
-                      ..text = Get.arguments['userEmail'].toString(),
+                      ..text = Get.arguments['User E-mail'].toString(),
                     decoration:
                         textInputDecoration.copyWith(hintText: 'User Email'),
                   ),
                   SizedBox(height: mediaQuery.size.height * 0.03),
                   TextFormField(
                     controller: upPhoneController
-                      ..text = Get.arguments['userPhone'],
+                      ..text = Get.arguments['User Contact-No'],
                     decoration: textInputDecoration.copyWith(
                       hintText: 'User Contact No.',
                     ),
@@ -69,7 +69,7 @@ class _InsertUserState extends State<UserUpdateScreen> {
                   SizedBox(height: mediaQuery.size.height * 0.03),
                   TextFormField(
                     controller: upAddressController
-                      ..text = Get.arguments['userAddress'].toString(),
+                      ..text = Get.arguments['User Address'].toString(),
                     decoration: textInputDecoration.copyWith(
                       hintText: 'User Address',
                     ),
@@ -87,25 +87,16 @@ class _InsertUserState extends State<UserUpdateScreen> {
                       ElevatedButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              // showDialog(
-                              //     context: context,
-                              //     barrierDismissible:
-                              //         false, // Prevent user from dismissing the dialog
-                              //     builder: (context) {
-                              //       return const Center(
-                              //         child: CircularProgressIndicator(),
-                              //       );
-                              //     });
                               await FirebaseFirestore.instance
                                   .collection("users")
                                   .doc(Get.arguments['docId'].toString())
                                   .update({
-                                'userName': upNameController.text.trim(),
-                                'userEmail': upEmailController.text.trim(),
-                                'userPhone': upPhoneController.text.trim(),
-                                'userAddress': upAddressController.text.trim(),
+                                'User Name': upNameController.text.trim(),
+                                'User E-mail': upEmailController.text.trim(),
+                                'User Contact-No':
+                                    upPhoneController.text.trim(),
+                                'User Address': upAddressController.text.trim(),
                               }).then((value) => {
-                                        //Navigator.pop(context),
                                         showSnackbar(
                                             context,
                                             Colors.green.shade200,
